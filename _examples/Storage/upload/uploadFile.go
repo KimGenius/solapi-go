@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/solapi/solapi-go"
 )
@@ -18,7 +19,12 @@ func main() {
 		[COOLSMS-MMS] : 300KB
 	*/
 	params := make(map[string]string)
-	params["file"] = "./test.jpg"
+	pwd, err := os.Getwd()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	params["file"] = pwd + "/_examples/Storage/upload/test.jpg"
 	params["name"] = "customFileName"
 	params["type"] = "MMS"
 
